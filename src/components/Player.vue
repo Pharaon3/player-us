@@ -1,6 +1,6 @@
 <template>
   <div class="player" id="player">
-    <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen"  ></vue-friendly-iframe>
+    <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id1" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"  ></vue-friendly-iframe>
     
 
     <div id="sport-links">
@@ -447,10 +447,43 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-    html, body { height:100%; background-color: #fff;}
+    html, body { height:100%; background-color: #fff; }
     body { margin:0; padding:0; }
     iframe { width: 100%; min-height: 400px;}
-
+    #app {
+      background: linear-gradient(180deg, #914e00, black);
+      background-attachment: fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+    }
+    #sport_list li {
+      border-radius: 15px;
+      background: rgba(255,255,255,0.1);
+      margin-right: 4px;
+    }
+    .live-tv iframe {
+      border-radius: 30px;
+      border-width: 0px;
+    }
+    .event-count {
+      border-radius: 1000px;
+      background: rgba(255,255,255,0.1);
+      height: 20px;
+      width: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sport-type {
+      color: #D9D9D9;
+    }
+    #sport-links ul li {
+      color: white;
+    }
+    .active .event-count {
+      background: #D67400;
+    }
     @media only screen and (max-width: 719px) {
       iframe { width: 100%; min-height: 200px;}
     }
@@ -497,8 +530,8 @@ export default {
       text-align: center;
     }
     #sport-links ul li.active {
-      background: #000;
-      color: #fff;
+      background: #fff;
+      color: #000;
     }
     #getFlashPlayer { text-align: center; padding: 10px;}
     #imageCenter { position: absolute; top: 50%; left: 50%; }
@@ -553,7 +586,6 @@ export default {
         list-style-type: none;
         height: 70px;
         float: left;
-        border: 1px solid #676b6c;
         border-top: none;
         border-left: none;
         text-align: center;
@@ -605,7 +637,6 @@ export default {
         list-style-type: none;
         height: 80px;
         float: left;
-        border: 1px solid #676b6c;
         border-top: none;
         border-left: none;
         text-align: center;
