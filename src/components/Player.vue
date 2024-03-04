@@ -1,6 +1,6 @@
 <template>
   <div class="player" id="player">
-    <!-- <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen"  ></vue-friendly-iframe> -->
+    <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen"  ></vue-friendly-iframe>
     
 
     <div id="sport-links">
