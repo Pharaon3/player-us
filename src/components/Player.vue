@@ -1,6 +1,6 @@
 <template>
   <div class="player" id="player">
-    <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id1" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"  ></vue-friendly-iframe>
+    <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"  ></vue-friendly-iframe>
     
 
     <div id="sport-links">
@@ -220,6 +220,10 @@
 
         <div class="clear"></div>
       </ul>
+    </div>
+
+    <div id="search-bar">
+      Filter Events
     </div>
 
     <div id="content">
@@ -457,6 +461,15 @@ export default {
       display: flex;
       justify-content: center;
     }
+    #search-bar {
+      padding: 12px 20px;
+      border-radius: 1000px;
+      border-width: 1px;
+      border-color: rgba(255, 255, 255, 0.1);
+      border-style: solid;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
     #sport_list li {
       border-radius: 15px;
       background: rgba(255,255,255,0.1);
@@ -474,6 +487,9 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    #sport_list li {
+      margin-right: 4px;
     }
     .sport-type {
       color: #D9D9D9;
@@ -501,6 +517,9 @@ export default {
     #player {
       min-width: 720px;
       min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
     .clear {
       clear: both;
@@ -514,7 +533,6 @@ export default {
       margin-top: 5px;
       max-width: 728px;
       position: relative;
-      border-left: 1px solid #676b6c;
     }
     .maximum{max-width: 728px !important;}
     #sport-links ul li:hover {
@@ -591,7 +609,6 @@ export default {
         text-align: center;
         position: relative;
         padding: 0;
-        margin: 0;
         cursor: pointer;
       }
       #sport-links ul li svg {
@@ -642,7 +659,6 @@ export default {
         text-align: center;
         position: relative;
         padding: 0;
-        margin: 0;
         cursor: pointer;
       }
       #sport-links ul li svg {
