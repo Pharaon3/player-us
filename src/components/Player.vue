@@ -229,7 +229,8 @@
 
     <div id="sort-buttons">
       <div id="sort-league">
-        <img :src="'./svg/Sort A-Z.svg'" alt="Sort Icon A-Z">
+        <img id="sortAZ" :src="'./svg/Sort A-Z.svg'" alt="Sort Icon A-Z">
+        <img id="sortZA" :src="'./svg/Sort Z-A.svg'" alt="Sort Icon Z-A">
         League
       </div>
       <div id="sort-event">Event</div>
@@ -428,7 +429,7 @@ export default {
       let li_tags = document.querySelectorAll('#sport-links ul li');
       // eslint-disable-next-line
       [].forEach.call(li_tags, function(item,index) {
-          item.style.width = '71.5px';
+          item.style.width = '84px';
       });
     }
     else {
@@ -509,6 +510,14 @@ export default {
       align-items: center;
       justify-content: space-between;
       color: white;
+    }
+    #sortAZ {
+      display: block;
+      cursor: pointer;
+    }
+    #sortZA {
+      display: none;
+      cursor: pointer;
     }
 
     #sport_list li {
@@ -653,7 +662,7 @@ export default {
       }
       #sport-links ul li {
         list-style-type: none;
-        height: 70px;
+        height: 84px;
         float: left;
         border-top: none;
         border-left: none;
@@ -687,8 +696,8 @@ export default {
       #sport-links ul li .event-count {
         font-size: .8rem;
         position: absolute;
-        right: 4px;
-        top: 5px;
+        right: 0px;
+        top: 0px;
       }
     }
     @media( min-width: 720px ) {
@@ -703,7 +712,7 @@ export default {
       }
       #sport-links ul li {
         list-style-type: none;
-        height: 80px;
+        height: 84px;
         float: left;
         border-top: none;
         border-left: none;
@@ -737,8 +746,8 @@ export default {
       #sport-links ul li .event-count {
         font-size: .8rem;
         position: absolute;
-        right: 5px;
-        top: 5px;
+        right: 0px;
+        top: 0px;
       }
     }
 </style>
