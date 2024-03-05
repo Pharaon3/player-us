@@ -227,6 +227,17 @@
       <i class="fa fa-search" aria-hidden="true"></i>
     </div>
 
+    <div id="sort-buttons">
+      <div id="sort-league">
+        <select id="sort-az">
+          <option>A-Z</option>
+          <option>Z-A</option>
+        </select>
+        League
+      </div>
+      <div id="sort-event">Event</div>
+    </div>
+
     <div id="content">
       <table id="liveEventList">
         <thead>
@@ -463,6 +474,7 @@ export default {
       display: flex;
       justify-content: center;
     }
+
     #search-bar {
       padding: 12px 20px;
       border-radius: 1000px;
@@ -489,6 +501,26 @@ export default {
       font-size: 19px;
       outline: none;
     }
+
+    #sort-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2px;
+    }
+    #sort-buttons> div {
+      padding: 12px 20px;
+      background: #D67400;
+      width: 50%;
+      border-radius: 10000px;
+      font-weight: 900;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+
     #sport_list li {
       border-radius: 15px;
       background: rgba(255,255,255,0.1);
