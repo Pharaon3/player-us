@@ -1,6 +1,6 @@
 <template>
   <div class="player" id="player">
-    <!-- <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"  ></vue-friendly-iframe> -->
+    <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"  ></vue-friendly-iframe>
     
 
     <div id="sport-links">
@@ -241,24 +241,16 @@
     <div id="content">
       <table id="liveEventList">
         <thead>
-          <tr>
-            <th width="40%">
-              League
-            </th>
-            <th width="60%">
-              Event
-            </th>
-          </tr>
         </thead>
 
         <tbody>
           <tr v-for="(competition, sid) in current.events" :class="{ 'activeEvent': stream_id === sid }"  v-bind:key="sid" v-on:click.stop.prevent="stream_id = sid">
             
-              <td width="40%">
+              <td width="50%">
                 {{competition.league}}
               </td>
 
-              <td width="60%">
+              <td width="50%">
                 {{competition.competitiors.home}} - {{competition.competitiors.away}}
               </td>
           
@@ -612,8 +604,8 @@ export default {
       width: 100%;
       padding: 0;
       margin: 0;
-      border: 1px solid #9f9f9f;
-      color: #636069;
+      font-size: 14px;
+      color: white;
     }
     #liveEventList thead tr {
       background: #d8d8d8;
@@ -630,8 +622,18 @@ export default {
       cursor: pointer;
     }
     #liveEventList tbody tr td {
-      border-bottom: 1px solid #2f2f2f;
-      padding: 10px;
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    #liveEventList tbody tr td:first-child {
+      text-align: right;
+      border-top-left-radius: 100px;
+      border-bottom-left-radius: 100px;
+    }
+    #liveEventList tbody tr td:last-child {
+      text-align: left;
+      border-top-right-radius: 100px;
+      border-bottom-right-radius: 100px;
     }
     #liveEventList tbody tr:hover {
       background: #ccc;
