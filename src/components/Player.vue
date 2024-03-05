@@ -1,6 +1,6 @@
 <template>
   <div class="player" id="player">
-    <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"  ></vue-friendly-iframe>
+    <!-- <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"  ></vue-friendly-iframe> -->
     
 
     <div id="sport-links">
@@ -223,7 +223,8 @@
     </div>
 
     <div id="search-bar">
-      Filter Events
+      <input type="text" id="filter-event-search" placeholder="Filter Events">
+      <i class="fa fa-search" aria-hidden="true"></i>
     </div>
 
     <div id="content">
@@ -260,6 +261,7 @@
 
 <script>
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
   name: 'Player',
@@ -469,6 +471,23 @@ export default {
       border-style: solid;
       background-color: rgba(255, 255, 255, 0.1);
       color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      outline: none;
+    }
+    #search-bar input {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 19px;
+      outline: none;
+      width: -webkit-fill-available;
+    }
+    #search-bar input::placeholder {
+      color: white;
+      font-size: 19px;
+      outline: none;
     }
     #sport_list li {
       border-radius: 15px;
