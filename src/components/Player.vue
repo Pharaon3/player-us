@@ -1330,7 +1330,7 @@ export default {
       if (!that.temp) {
         for (let i = 0; i < sport_lists.length; i++) {
           if (i % 2 == 0) {
-            sport_lists[i].style.display = "block";
+            sport_lists[i].style.display = "flex";
             that.first_time = false;
           }
         }
@@ -1370,14 +1370,14 @@ export default {
       let show_elems = document.querySelectorAll("#sport_list li");
       // eslint-disable-next-line
       [].forEach.call(show_elems, function (item, index) {
-        item.style.display = "block";
+        item.style.display = "flex";
       });
 
       let show_alls = document.querySelectorAll(".show_all");
 
       // eslint-disable-next-line
       [].forEach.call(show_alls, function (item, index) {
-        item.style.display = "block";
+        item.style.display = "flex";
       });
 
       [].forEach.call(show_alls, function (item, index) {
@@ -1414,7 +1414,6 @@ export default {
     var that = this;
     window.removeEventListener("resize", that.responsive);
   },
-
   updated() {
     var that = this;
     window.addEventListener("resize", that.responsive);
@@ -1453,328 +1452,325 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-html,
-body {
-  height: 100%;
-  background-color: #fff;
-}
-body {
-  margin: 0;
-  padding: 0;
-}
-iframe {
-  width: 100%;
-  min-height: 400px;
-}
-#app {
-  background: linear-gradient(180deg, #914e00, black);
-  background-attachment: fixed;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-#search-bar {
-  padding: 12px 20px;
-  border-radius: 1000px;
-  border-width: 1px;
-  border-color: rgba(255, 255, 255, 0.1);
-  border-style: solid;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  outline: none;
-}
-#search-bar input {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 19px;
-  outline: none;
-  width: -webkit-fill-available;
-}
-#search-bar input::placeholder {
-  color: white;
-  font-size: 19px;
-  outline: none;
-}
-
-#sort-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2px;
-}
-#sort-buttons > div {
-  padding: 12px 20px;
-  background: #d67400;
-  width: 50%;
-  border-radius: 10000px;
-  font-weight: 900;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: white;
-}
-#sortAZ {
-  display: block;
-  cursor: pointer;
-}
-#sortZA {
-  display: none;
-  cursor: pointer;
-}
-
-#sport_list li {
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  margin-right: 4px;
-}
-.live-tv iframe {
-  border-radius: 30px;
-  border-width: 0px;
-}
-.event-count {
-  border-radius: 1000px;
-  background: rgba(255, 255, 255, 0.1);
-  height: 20px;
-  width: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#sport_list li {
-  margin-right: 4px;
-}
-.sport-type {
-  color: #d9d9d9;
-}
-#sport-links ul li {
-  color: white;
-}
-.active .event-count {
-  background: #d67400;
-}
-@media only screen and (max-width: 719px) {
+  html,
+  body {
+    height: 100%;
+    background-color: #fff;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
   iframe {
     width: 100%;
-    min-height: 200px;
+    min-height: 400px;
   }
-}
-
-.vue-friendly-iframe {
-  max-width: 720px;
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-}
-#flashContent {
-  display: inline-block;
-  border: 4px solid #000;
-}
-#player {
-  min-width: 720px;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.clear {
-  clear: both;
-}
-#sport-links {
-  max-width: 728px;
-}
-#sport-links ul {
-  padding: 0;
-  margin: 0;
-  margin-top: 5px;
-  max-width: 728px;
-  position: relative;
-}
-.maximum {
-  max-width: 728px !important;
-}
-#sport-links ul li:hover {
-  background: #000;
-  color: #fff;
-}
-#sport-links ul li .sport-type {
-  font-size: 0.7rem;
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-}
-#sport-links ul li.active {
-  background: #fff;
-  color: #000;
-}
-#getFlashPlayer {
-  text-align: center;
-  padding: 10px;
-}
-#imageCenter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-
-#content {
-  max-width: 728px;
-}
-#liveEventList {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  font-size: 14px;
-  color: white;
-}
-#liveEventList thead tr {
-  background: #d8d8d8;
-  color: #273655;
-  height: 35px;
-}
-.activeEvent {
-  background: #d8d8d8;
-  color: #273655;
-}
-#liveEventList tbody tr {
-  height: 50px;
-  vertical-align: middle;
-  cursor: pointer;
-}
-#liveEventList tbody tr td {
-  padding: 18px 20px;
-  background: rgba(255, 255, 255, 0.1);
-}
-#liveEventList tbody tr td:first-child {
-  text-align: right;
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
-}
-#liveEventList tbody tr td:last-child {
-  text-align: left;
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-}
-#liveEventList tbody tr:hover {
-  background: #ccc;
-  color: #2f2f2f;
-}
-#warpper {
-  display: inline-flex;
-}
-.odd {
-  background-color: #ccc;
-}
-.even {
-  background-color: #fff;
-}
-.hide {
-  display: none;
-}
-
-@media (min-width: 320px) {
-  .player {
-    padding: 10px;
+  #app {
+    background: linear-gradient(180deg, #914e00, black);
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
   }
-  #sport-links ul {
+
+  #search-bar {
+    padding: 12px 20px;
+    border-radius: 1000px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-style: solid;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    outline: none;
   }
-  #sport-links ul li {
-    list-style-type: none;
-    height: 84px;
-    float: left;
-    border-top: none;
-    border-left: none;
-    text-align: center;
-    position: relative;
-    padding: 0;
+  #search-bar input {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 19px;
+    outline: none;
+    width: -webkit-fill-available;
+  }
+  #search-bar input::placeholder {
+    color: white;
+    font-size: 19px;
+    outline: none;
+  }
+
+  #sort-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px;
+  }
+  #sort-buttons > div {
+    padding: 12px 20px;
+    background: #d67400;
+    width: 50%;
+    border-radius: 10000px;
+    font-weight: 900;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+  }
+  #sortAZ {
+    display: block;
     cursor: pointer;
   }
-  #sport-links ul li svg {
-    position: absolute;
-    top: 11px;
-    left: 20px;
-    font-size: 1.5rem;
-    width: 40%;
-    text-align: center;
-    fill: currentColor;
+  #sortZA {
+    display: none;
+    cursor: pointer;
   }
-  li.show_all span {
-    display: block;
-    width: 40px;
-    height: 40px;
+
+  #sport_list li {
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-right: 4px;
+  }
+  .live-tv iframe {
+    border-radius: 30px;
+    border-width: 0px;
+  }
+  .event-count {
+    border-radius: 1000px;
+    background: rgba(255, 255, 255, 0.1);
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #sport_list li {
+    margin-right: 4px;
+  }
+  .sport-type {
+    color: #d9d9d9;
+  }
+  #sport-links ul li {
+    color: white;
+    justify-content: center;
+    align-items: center;
+  }
+  .active .event-count {
+    background: #d67400;
+  }
+  @media only screen and (max-width: 719px) {
+    iframe {
+      width: 100%;
+      min-height: 200px;
+    }
+  }
+
+  .vue-friendly-iframe {
+    max-width: 720px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+  #flashContent {
+    display: inline-block;
     border: 4px solid #000;
-    border-radius: 70px;
-    margin: 10px auto;
-    line-height: 40px;
-    font-weight: bold;
   }
-  li.show_all span:hover {
-    border: 4px solid #fff;
+  #player {
+    min-width: 720px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
-  #sport-links ul li .event-count {
-    font-size: 0.8rem;
-    position: absolute;
-    right: 0px;
-    top: 0px;
+  .clear {
+    clear: both;
   }
-}
-@media (min-width: 720px) {
-  .player {
-    padding: 10px;
-  }
-  li.show_all {
-    border-color: transparent !important;
+  #sport-links {
+    max-width: 728px;
   }
   #sport-links ul {
-  }
-  #sport-links ul li {
-    list-style-type: none;
-    height: 84px;
-    float: left;
-    border-top: none;
-    border-left: none;
-    text-align: center;
-    position: relative;
     padding: 0;
+    margin: 0;
+    margin-top: 5px;
+    max-width: 728px;
+    position: relative;
+  }
+  .maximum {
+    max-width: 728px !important;
+  }
+  #sport-links ul li:hover {
+    background: #000;
+    color: #fff;
+  }
+  #sport-links ul li .sport-type {
+    font-size: 0.7rem;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+  #sport-links ul li.active {
+    background: #fff;
+    color: #000;
+  }
+  #getFlashPlayer {
+    text-align: center;
+    padding: 10px;
+  }
+  #imageCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  #content {
+    max-width: 728px;
+  }
+  #liveEventList {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: white;
+  }
+  #liveEventList thead tr {
+    background: #d8d8d8;
+    color: #273655;
+    height: 35px;
+  }
+  .activeEvent {
+    background: #d8d8d8;
+    color: #273655;
+  }
+  #liveEventList tbody tr {
+    height: 50px;
+    vertical-align: middle;
     cursor: pointer;
   }
-  #sport-links ul li svg {
-    position: absolute;
-    top: 20px;
-    left: 23px;
-    font-size: 1.5rem;
-    width: 35%;
-    text-align: center;
-    fill: currentColor;
+  #liveEventList tbody tr td {
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.1);
   }
-  li.show_all span {
-    display: block;
-    width: 50px;
-    height: 50px;
-    border: 5px solid #000;
-    border-radius: 70px;
-    margin: 10px auto;
-    line-height: 50px;
-    font-weight: bold;
+  #liveEventList tbody tr td:first-child {
+    text-align: right;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
   }
-  li.show_all span:hover {
-    border: 5px solid #fff;
+  #liveEventList tbody tr td:last-child {
+    text-align: left;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
   }
-  #sport-links ul li .event-count {
-    font-size: 0.8rem;
-    position: absolute;
-    right: 0px;
-    top: 0px;
+  #liveEventList tbody tr:hover {
+    background: #ccc;
+    color: #2f2f2f;
   }
-}
+  #warpper {
+    display: inline-flex;
+  }
+  .odd {
+    background-color: #ccc;
+  }
+  .even {
+    background-color: #fff;
+  }
+  .hide {
+    display: none;
+  }
+
+  @media (min-width: 320px) {
+    .player {
+      padding: 10px;
+    }
+    #sport-links ul {
+    }
+    #sport-links ul li {
+      list-style-type: none;
+      height: 84px;
+      float: left;
+      border-top: none;
+      border-left: none;
+      text-align: center;
+      position: relative;
+      padding: 0;
+      cursor: pointer;
+    }
+    #sport-links ul li svg {
+      font-size: 1.5rem;
+      width: 40%;
+      text-align: center;
+      fill: currentColor;
+      margin-top: -20px;
+    }
+    li.show_all span {
+      display: block;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #000;
+      border-radius: 70px;
+      margin: 10px auto;
+      line-height: 40px;
+      font-weight: bold;
+    }
+    li.show_all span:hover {
+      border: 4px solid #fff;
+    }
+    #sport-links ul li .event-count {
+      font-size: 0.8rem;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+  }
+  @media (min-width: 720px) {
+    .player {
+      padding: 10px;
+    }
+    li.show_all {
+      border-color: transparent !important;
+    }
+    #sport-links ul {
+    }
+    #sport-links ul li {
+      list-style-type: none;
+      height: 84px;
+      float: left;
+      border-top: none;
+      border-left: none;
+      text-align: center;
+      position: relative;
+      padding: 0;
+      cursor: pointer;
+    }
+    #sport-links ul li svg {
+      font-size: 1.5rem;
+      width: 35%;
+      text-align: center;
+      fill: currentColor;
+    }
+    li.show_all span {
+      display: block;
+      width: 50px;
+      height: 50px;
+      border: 5px solid #000;
+      border-radius: 70px;
+      margin: 10px auto;
+      line-height: 50px;
+      font-weight: bold;
+    }
+    li.show_all span:hover {
+      border: 5px solid #fff;
+    }
+    #sport-links ul li .event-count {
+      font-size: 0.8rem;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+  }
 </style>
