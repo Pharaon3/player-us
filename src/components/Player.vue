@@ -229,10 +229,7 @@
 
     <div id="sort-buttons">
       <div id="sort-league">
-        <select id="sort-az">
-          <option>A-Z</option>
-          <option>Z-A</option>
-        </select>
+        <img :src="'./svg/Sort A-Z.svg'" alt="Sort Icon A-Z">
         League
       </div>
       <div id="sort-event">Event</div>
@@ -465,6 +462,7 @@ export default {
       background-size: cover;
       display: flex;
       justify-content: center;
+      min-height: 100vh;
     }
 
     #search-bar {
