@@ -1349,7 +1349,7 @@ export default {
       if (w >= 728) {
         document.getElementById("player").style.minWidth = "720px";
         document.getElementById("player").style.minHeight = "400px";
-        that.show_count = 10;
+        that.show_count = 8;
         that.show_all_btn;
         that.first_time = true;
         that.$forceUpdate();
@@ -1424,7 +1424,7 @@ export default {
     if (w > 728) {
       document.getElementById("player").style.minWidth = "720px";
       document.getElementById("player").style.minHeight = "400px";
-      that.show_count = 10;
+      that.show_count = 8;
 
       let li_tags = document.querySelectorAll("#sport-links ul li");
       // eslint-disable-next-line
@@ -1532,6 +1532,7 @@ export default {
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.1);
     margin-right: 4px;
+    margin-bottom: 4px;
   }
   .live-tv iframe {
     border-radius: 30px;
@@ -1545,9 +1546,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  #sport_list li {
-    margin-right: 4px;
   }
   .sport-type {
     color: #d9d9d9;
@@ -1616,6 +1614,9 @@ export default {
   }
   #sport-links ul li.active {
     background: #fff;
+    color: #000;
+  }
+  #sport-links ul li.active> span {
     color: #000;
   }
   #getFlashPlayer {
@@ -1708,17 +1709,17 @@ export default {
       margin-top: -20px;
     }
     li.show_all span {
-      display: block;
-      width: 40px;
-      height: 40px;
-      border: 4px solid #000;
-      border-radius: 70px;
-      margin: 10px auto;
-      line-height: 40px;
-      font-weight: bold;
+      width: 30px;
+      height: 30px;
+      background: #FFF; 
+      color: black;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
     }
     li.show_all span:hover {
-      border: 4px solid #fff;
     }
     #sport-links ul li .event-count {
       font-size: 0.8rem;
@@ -1754,17 +1755,17 @@ export default {
       fill: currentColor;
     }
     li.show_all span {
-      display: block;
-      width: 50px;
-      height: 50px;
-      border: 5px solid #000;
-      border-radius: 70px;
-      margin: 10px auto;
-      line-height: 50px;
-      font-weight: bold;
+      width: 30px;
+      height: 30px;
+      background: #FFF; 
+      color: black;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
     }
     li.show_all span:hover {
-      border: 5px solid #fff;
     }
     #sport-links ul li .event-count {
       font-size: 0.8rem;
