@@ -8,7 +8,7 @@ This *Live Sport Video Player* is an application that allows users to watch live
 
 ## Technical framework
 
-*Fruktkartan* is built using Vue.
+*Live Sport Video Player* is built using Vue.
 
 ## Contributing
 
