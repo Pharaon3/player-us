@@ -1398,12 +1398,10 @@ export default {
       });
     },
     sortAZ() {
-      console.log("sort AZ clicked.");
       this.isVisibleAZ = false;
       this.isVisibleZA = true;
     },
     sortZA() {
-      console.log("sort ZA clicked.");
       this.isVisibleAZ = true;
       this.isVisibleZA = false;
     }
