@@ -1189,8 +1189,8 @@
 
     <div id="sort-buttons">
       <div id="sort-league">
-        <img id="sortAZ" :src="'./svg/Sort A-Z.svg'" alt="Sort Icon A-Z" />
-        <img id="sortZA" :src="'./svg/Sort Z-A.svg'" alt="Sort Icon Z-A" />
+        <img id="sortAZ" :src="'./svg/Sort A-Z.svg'" alt="Sort Icon A-Z" @click="sortAZ()" v-if="isVisibleAZ"/>
+        <img id="sortZA" :src="'./svg/Sort Z-A.svg'" alt="Sort Icon Z-A" @click="sortZA()" v-if="isVisibleZA"/>
         League
       </div>
       <div id="sort-event">Event</div>
@@ -1270,6 +1270,8 @@ export default {
       show_count: 5,
       temp: true,
       first_time: true,
+      isVisibleAZ: true,
+      isVisibleZA: false
     };
   },
 
@@ -1395,6 +1397,16 @@ export default {
         item.style.display = "none";
       });
     },
+    sortAZ() {
+      console.log("sort AZ clicked.");
+      this.isVisibleAZ = false;
+      this.isVisibleZA = true;
+    },
+    sortZA() {
+      console.log("sort ZA clicked.");
+      this.isVisibleAZ = true;
+      this.isVisibleZA = false;
+    }
   },
 
   created() {
@@ -1433,12 +1445,12 @@ export default {
     } else {
       document.getElementById("player").style.minWidth = w - 28 + "px";
       document.getElementById("player").style.minHeight = (w - 28) / 1.8 + "px";
-      that.show_count = (w / 60).toFixed(0) - 1;
+      that.show_count = (w / 60).toFixed(0) - 3;
 
       let li_tags = document.querySelectorAll("#sport-links ul li");
       // eslint-disable-next-line
       [].forEach.call(li_tags, function (item, index) {
-        let wd = (w - that.show_count * 2 - 18) / that.show_count;
+        let wd = (w - that.show_count * 2 - 18) / that.show_count - 4;
         item.style.width = wd + "px";
       });
     }
@@ -1519,11 +1531,9 @@ export default {
     color: white;
   }
   #sortAZ {
-    display: block;
     cursor: pointer;
   }
   #sortZA {
-    display: none;
     cursor: pointer;
   }
 
