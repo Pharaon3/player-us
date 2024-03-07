@@ -1668,13 +1668,13 @@ export default {
   }
   #liveEventList tbody tr td:first-child {
     text-align: right;
-    border-top-left-radius: 100px;
-    border-bottom-left-radius: 100px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
   #liveEventList tbody tr td:last-child {
     text-align: left;
-    border-top-right-radius: 100px;
-    border-bottom-right-radius: 100px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
   #liveEventList tbody tr:hover {
     background: #ccc;
