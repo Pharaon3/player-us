@@ -1310,7 +1310,6 @@ export default {
               );
             }
           });
-          console.log("that.stream_list: ", that.stream_list);
           if (that.stream_id < 1) {
             if (
               typeof that.stream_list.football != "undefined" &&
@@ -1320,7 +1319,6 @@ export default {
               that.stream_id = Object.keys(that.stream_list.football.events)[0];
               that.selected_sport_type = "football";
               that.current = that.stream_list.football;
-              console.log("current: ", that.current);
             } else if (
               typeof that.stream_list.basketball != "undefined" &&
               that.stream_list.basketball.count > 0
@@ -1330,7 +1328,6 @@ export default {
               that.selected_sport_type = "basketball";
               that.current = that.stream_list.basketball;
               that.activeIndex = "basketball";
-              console.log("current: ", that.current);
             }
           }
         })
@@ -1381,16 +1378,21 @@ export default {
       } else {
         document.getElementById("player").style.minWidth = w - 28 + "px";
         document.getElementById("player").style.minHeight = (w - 28) / 1.8 + "px";
-        that.show_count = (w / 60).toFixed(0) - 1;
+        that.show_count = (w / 60).toFixed(0) - 3;
         that.show_all_btn;
         that.first_time = true;
         //console.log(that.show_count);
         that.$forceUpdate();
       }
+      if (w <= 460) {
+        document.getElementById("sport_list").style.width = that.live_sport_count * 88 + "px";
+      } else {
+        document.getElementById("sport_list").style.width ="auto";
+      }
     },
     show_all_btn() {
       let that = this;
-
+      let w = window.innerWidth;
       let show_elems = document.querySelectorAll("#sport_list li");
       // eslint-disable-next-line
       [].forEach.call(show_elems, function (item, index) {
@@ -1398,27 +1400,33 @@ export default {
       });
 
       let show_alls = document.querySelectorAll(".show_all");
+      if (w > 460) {
+        // eslint-disable-next-line
+        [].forEach.call(show_alls, function (item, index) {
+          item.style.display = "flex";
+        });
 
-      // eslint-disable-next-line
-      [].forEach.call(show_alls, function (item, index) {
-        item.style.display = "flex";
-      });
+        [].forEach.call(show_alls, function (item, index) {
+          if (index !== that.show_count - 2) {
+            item.style.display = "none";
+          }
+        });
 
-      [].forEach.call(show_alls, function (item, index) {
-        if (index !== that.show_count - 2) {
+        let hide_count = that.show_count * 2 - 1;
+        let hide_elems = document.querySelectorAll(
+          "#sport_list li:nth-child(n+" + hide_count + ")"
+        );
+
+        // eslint-disable-next-line
+        [].forEach.call(hide_elems, function (item, index) {
           item.style.display = "none";
-        }
-      });
-
-      let hide_count = that.show_count * 2 - 1;
-      let hide_elems = document.querySelectorAll(
-        "#sport_list li:nth-child(n+" + hide_count + ")"
-      );
-
-      // eslint-disable-next-line
-      [].forEach.call(hide_elems, function (item, index) {
-        item.style.display = "none";
-      });
+        });
+      } else {
+        [].forEach.call(show_alls, function (item, index) {
+          item.style.display = "none";
+        });
+      }
+      
     },
     sortAZ() {
       this.isVisibleAZ = false;
@@ -1453,6 +1461,7 @@ export default {
     setInterval(function () {
       that.getEventList();
     }, 60000);
+    window.addEventListener("resize", that.responsive);
   },
   ready: function () {
     var that = this;
@@ -1489,6 +1498,13 @@ export default {
       [].forEach.call(li_tags, function (item, index) {
         let wd = (w - that.show_count * 2 - 18) / that.show_count - 4;
         item.style.width = wd + "px";
+      });
+    }
+    if (w <= 460) {
+      let li_tags = document.querySelectorAll("#sport-links ul li");
+      // eslint-disable-next-line
+      [].forEach.call(li_tags, function (item, index) {
+        item.style.width = "84px";
       });
     }
     if (that.first_time) {
@@ -1774,48 +1790,19 @@ export default {
       top: 0px;
     }
   }
-  @media (min-width: 460px) {
-    .player {
-      padding: 10px;
+  @media (max-width: 460px) {
+    li.show_all {
+      display: none;
+    }
+    #sport-links {
+      white-space: nowrap;
+      overflow: auto;
+    }
+    #sport_list {
+      display: flex;
     }
     #sport-links ul {
-    }
-    #sport-links ul li {
-      list-style-type: none;
-      height: 84px;
-      float: left;
-      border-top: none;
-      border-left: none;
-      text-align: center;
-      position: relative;
-      padding: 0;
-      cursor: pointer;
-    }
-    #sport-links ul li svg {
-      font-size: 1.5rem;
-      width: 40%;
-      text-align: center;
-      fill: currentColor;
-      margin-top: -20px;
-    }
-    li.show_all span {
-      width: 30px;
-      height: 30px;
-      background: #FFF; 
-      color: black;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-    }
-    li.show_all span:hover {
-    }
-    #sport-links ul li .event-count {
-      font-size: 0.8rem;
-      position: absolute;
-      right: 0px;
-      top: 0px;
+      max-width: none;
     }
   }
   @media (min-width: 720px) {
