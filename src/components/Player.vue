@@ -1189,8 +1189,20 @@
 
     <div id="sort-buttons">
       <div id="sort-league">
-        <img id="sortAZ" :src="'./svg/Sort A-Z.svg'" alt="Sort Icon A-Z" @click="sortAZ()" v-if="isVisibleAZ"/>
-        <img id="sortZA" :src="'./svg/Sort Z-A.svg'" alt="Sort Icon Z-A" @click="sortZA()" v-if="isVisibleZA"/>
+        <img
+          id="sortAZ"
+          :src="'./svg/Sort A-Z.svg'"
+          alt="Sort Icon A-Z"
+          @click="sortAZ()"
+          v-if="isVisibleAZ"
+        />
+        <img
+          id="sortZA"
+          :src="'./svg/Sort Z-A.svg'"
+          alt="Sort Icon Z-A"
+          @click="sortZA()"
+          v-if="isVisibleZA"
+        />
         League
       </div>
       <div id="sort-event">Event</div>
@@ -1271,7 +1283,7 @@ export default {
       temp: true,
       first_time: true,
       isVisibleAZ: true,
-      isVisibleZA: false
+      isVisibleZA: false,
     };
   },
 
@@ -1293,7 +1305,9 @@ export default {
               Object.values(that.stream_list[item].events).forEach((event) => {
                 that.stream_list[item].eventList.push(event);
               });
-              that.stream_list[item].eventList.sort((a, b) => (a.league > b.league) ? 1 : ((b.league > a.league) ? -1 : 0));
+              that.stream_list[item].eventList.sort((a, b) =>
+                a.league > b.league ? 1 : b.league > a.league ? -1 : 0
+              );
             }
           });
           console.log("that.stream_list: ", that.stream_list);
@@ -1409,11 +1423,27 @@ export default {
     sortAZ() {
       this.isVisibleAZ = false;
       this.isVisibleZA = true;
+      var that = this;
+      Object.keys(that.stream_list).forEach(function (item) {
+        if (that.stream_list[item].events != "undefined") {
+          that.stream_list[item].eventList.sort((a, b) =>
+            a.league < b.league ? 1 : b.league < a.league ? -1 : 0
+          );
+        }
+      });
     },
     sortZA() {
       this.isVisibleAZ = true;
       this.isVisibleZA = false;
-    }
+      var that = this;
+      Object.keys(that.stream_list).forEach(function (item) {
+        if (that.stream_list[item].events != "undefined") {
+          that.stream_list[item].eventList.sort((a, b) =>
+            a.league > b.league ? 1 : b.league > a.league ? -1 : 0
+          );
+        }
+      });
+    },
   },
 
   created() {
