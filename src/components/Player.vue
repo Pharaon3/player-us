@@ -1422,7 +1422,7 @@ export default {
           item.style.display = "none";
         });
       } else {
-        [].forEach.call(show_alls, function (item, index) {
+        [].forEach.call(show_alls, function (item) {
           item.style.display = "none";
         });
       }
