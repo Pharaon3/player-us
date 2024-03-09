@@ -1214,10 +1214,10 @@
 
         <tbody>
           <tr
-            v-for="(competition, sid) in current.eventList"
-            :class="{ activeEvent: stream_id === sid }"
-            v-bind:key="sid"
-            v-on:click.stop.prevent="stream_id = sid"
+            v-for="(competition) in current.eventList"
+            :class="{ activeEvent: stream_id === competition.sid }"
+            v-bind:key="competition.sid"
+            v-on:click.stop.prevent="stream_id = competition.sid"
           >
             <td width="50%">
               {{ competition.league }}
@@ -1302,8 +1302,8 @@ export default {
             }
             if (that.stream_list[item].events != "undefined") {
               that.stream_list[item].eventList = [];
-              Object.values(that.stream_list[item].events).forEach((event) => {
-                that.stream_list[item].eventList.push(event);
+              Object.keys(that.stream_list[item].events).forEach((sid) => {
+                that.stream_list[item].eventList.push({...that.stream_list[item].events[sid], sid: sid});
               });
               that.stream_list[item].eventList.sort((a, b) =>
                 a.league > b.league ? 1 : b.league > a.league ? -1 : 0
@@ -1456,12 +1456,12 @@ export default {
 
   created() {
     var that = this;
+    window.addEventListener("resize", that.responsive);
     // get live events list every 60 seconds and update
     that.getEventList();
     setInterval(function () {
       that.getEventList();
     }, 60000);
-    window.addEventListener("resize", that.responsive);
   },
   ready: function () {
     var that = this;
