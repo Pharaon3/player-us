@@ -1222,7 +1222,10 @@
             <td width="50%">
               {{ competition.league }}
             </td>
-
+            <td class="mobile-td" width="100%">
+              <div>{{ competition.league }}</div>
+              <div>{{ competition.competitiors.home }} - {{ competition.competitiors.away }}</div>
+            </td>
             <td width="50%">
               {{ competition.competitiors.home }} - {{ competition.competitiors.away }}
             </td>
@@ -1330,6 +1333,7 @@ export default {
               that.activeIndex = "basketball";
             }
           }
+          that.responsive();
         })
         .catch(function (error) {
           // eslint-disable-next-line
@@ -1456,7 +1460,6 @@ export default {
 
   created() {
     var that = this;
-    window.addEventListener("resize", that.responsive);
     // get live events list every 60 seconds and update
     that.getEventList();
     setInterval(function () {
@@ -1729,6 +1732,25 @@ export default {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
   }
+  #liveEventList tbody tr td.mobile-td {
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    background: transparent;
+    padding: 0px;
+  }
+  .mobile-td div:first-child {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  .mobile-td div:last-child {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
   #liveEventList tbody tr:hover {
     background: #ccc;
     color: #2f2f2f;
@@ -1803,6 +1825,15 @@ export default {
     }
     #sport-links ul {
       max-width: none;
+    }
+    #liveEventList tbody tr td.mobile-td {
+      display: flex;
+    }
+    #liveEventList tbody tr td:first-child {
+      display: none;
+    }
+    #liveEventList tbody tr td:last-child {
+      display: none;
     }
   }
   @media (min-width: 720px) {
