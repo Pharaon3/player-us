@@ -1202,7 +1202,7 @@
 
         <tbody>
           <tr
-            v-for="(competition, sid) in current.events"
+            v-for="(competition, sid) in current.eventList"
             :class="{ activeEvent: stream_id === sid }"
             v-bind:key="sid"
             v-on:click.stop.prevent="stream_id = sid"
@@ -1288,8 +1288,15 @@ export default {
             if (that.stream_list[item].count > 0) {
               that.live_sport_count++;
             }
+            if (that.stream_list[item].events != "undefined") {
+              that.stream_list[item].eventList = [];
+              Object.values(that.stream_list[item].events).forEach((event) => {
+                that.stream_list[item].eventList.push(event);
+              });
+              that.stream_list[item].eventList.sort((a, b) => (a.league > b.league) ? 1 : ((b.league > a.league) ? -1 : 0));
+            }
           });
-
+          console.log("that.stream_list: ", that.stream_list);
           if (that.stream_id < 1) {
             if (
               typeof that.stream_list.football != "undefined" &&
@@ -1299,6 +1306,7 @@ export default {
               that.stream_id = Object.keys(that.stream_list.football.events)[0];
               that.selected_sport_type = "football";
               that.current = that.stream_list.football;
+              console.log("current: ", that.current);
             } else if (
               typeof that.stream_list.basketball != "undefined" &&
               that.stream_list.basketball.count > 0
@@ -1308,6 +1316,7 @@ export default {
               that.selected_sport_type = "basketball";
               that.current = that.stream_list.basketball;
               that.activeIndex = "basketball";
+              console.log("current: ", that.current);
             }
           }
         })
@@ -1692,6 +1701,50 @@ export default {
   }
 
   @media (min-width: 320px) {
+    .player {
+      padding: 10px;
+    }
+    #sport-links ul {
+    }
+    #sport-links ul li {
+      list-style-type: none;
+      height: 84px;
+      float: left;
+      border-top: none;
+      border-left: none;
+      text-align: center;
+      position: relative;
+      padding: 0;
+      cursor: pointer;
+    }
+    #sport-links ul li svg {
+      font-size: 1.5rem;
+      width: 40%;
+      text-align: center;
+      fill: currentColor;
+      margin-top: -20px;
+    }
+    li.show_all span {
+      width: 30px;
+      height: 30px;
+      background: #FFF; 
+      color: black;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    li.show_all span:hover {
+    }
+    #sport-links ul li .event-count {
+      font-size: 0.8rem;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+  }
+  @media (min-width: 460px) {
     .player {
       padding: 10px;
     }
