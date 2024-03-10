@@ -1760,6 +1760,7 @@ export default {
     gap: 2px;
     background: transparent;
     padding: 0px;
+    text-align: center;
   }
   .mobile-td div:first-child {
     padding: 15px;
