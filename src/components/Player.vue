@@ -1751,6 +1751,10 @@ export default {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
+  .activeEvent .mobile-td div {
+    background: #d8d8d8;
+    color: #273655;
+  }
   #liveEventList tbody tr:hover {
     background: #ccc;
     color: #2f2f2f;
@@ -1834,6 +1838,29 @@ export default {
     }
     #liveEventList tbody tr td:last-child {
       display: none;
+    }
+    .activeEvent {
+      background: transparent;
+    }
+    #liveEventList tbody tr:hover {
+      background: transparent;
+      color: #aaa;
+    }
+    #sort-buttons {
+      flex-direction: column;
+    }
+    #sort-buttons > div {
+      width: calc(100vw - 70px);
+    }
+    #sort-buttons #sort-league {
+      border-radius: unset;
+      border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+    }
+    #sort-buttons #sort-event {
+      border-radius: unset;
+      border-bottom-left-radius: 22px;
+      border-bottom-right-radius: 22px;
     }
   }
   @media (min-width: 720px) {
