@@ -1603,20 +1603,16 @@ export default {
     color: white;
   }
   #sort-buttons > div:first-child {
-    justify-content: end;
+    justify-content: space-between;
   }
   #sort-buttons > div:last-child {
     justify-content: start;
   }
   #sortAZ {
-    cursor: pointer;    
-    position: fixed;
-    left: 30px;
+    cursor: pointer;
   }
   #sortZA {
     cursor: pointer; 
-    position: fixed;
-    left: 30px;
   }
 
   #sport_list li {
@@ -1657,7 +1653,7 @@ export default {
   }
 
   .vue-friendly-iframe {
-    max-width: 720px;
+    max-width: 711px;
   }
 
   .icon {
@@ -1797,6 +1793,9 @@ export default {
   .hide {
     display: none;
   }
+  iframe body {
+    margin: 0px;
+  }
 
   @media (min-width: 320px) {
     .player {
@@ -1893,6 +1892,14 @@ export default {
     }
     #sort-buttons > div:last-child {
       justify-content: center;
+    }
+    #sortAZ {  
+      position: absolute;
+      left: 30px;
+    }
+    #sortZA {
+      position: absolute;
+      left: 30px;
     }
   }
   @media (min-width: 720px) {
