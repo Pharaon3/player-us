@@ -1233,6 +1233,15 @@
         </tbody>
       </table>
     </div>
+    <div class="color-palette hidden">
+      <div class="color-section green" @click="pick_color('green')"></div>
+      <div class="color-section orange" @click="pick_color('orange')"></div>
+      <div class="color-section blue" @click="pick_color('blue')"></div>
+      <div class="color-section red" @click="pick_color('red')"></div>
+      <div class="color-section white" @click="pick_color('white')"></div>
+    </div>
+    <div class="float orange" @click="change_color()">
+    </div>
   </div>
 </template>
 
@@ -1472,6 +1481,22 @@ export default {
         }
       });
       
+    },
+    change_color() {
+      if (document.querySelector(".color-palette").classList.contains("hidden")) {
+        document.querySelector(".color-palette").classList.remove("hidden");
+      } else {
+        document.querySelector(".color-palette").classList.add("hidden");
+      }
+    },
+    pick_color(pickedColor) {
+      document.querySelector(".float").classList.remove("green");
+      document.querySelector(".float").classList.remove("orange");
+      document.querySelector(".float").classList.remove("blue");
+      document.querySelector(".float").classList.remove("red");
+      document.querySelector(".float").classList.remove("white");
+      document.querySelector(".float").classList.add(pickedColor);
+      document.querySelector(".color-palette").classList.add("hidden");
     }
   },
 
@@ -1797,6 +1822,54 @@ export default {
   iframe body {
     margin: 0px;
   }
+  .float{
+    position:fixed;
+    width: 40px;
+    height: 40px;
+    bottom: 22px;
+    right: 22px;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    //background-image: conic-gradient(green, orange, orange, blue, blue, red, red, white, white, green);
+  }
+  .color-palette{
+    position:fixed;
+    width: 280px;
+    height: 44px;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgb(0,0,0,0.6);
+    color:#FFF;
+    border-radius:20px;
+    text-align:center;
+    //background-image: conic-gradient(green, orange, orange, blue, blue, red, red, white, white, green);
+    display: flex;
+  }
+  .color-section {
+    margin: 2px;
+    width: 40px;
+    height: 40px;
+    border-radius: 500px;
+  }
+  .green {
+    background-color: #10651E;
+  }
+  .orange {
+    background-color: #914E00;
+  }
+  .blue {
+    background-color: #003191;
+  }
+  .red {
+    background-color: #910000;
+  }
+  .white {
+    background-color: #FFF;
+  }
+  .hidden {
+    display: none;
+  }
 
   @media (min-width: 320px) {
     .player {
@@ -1901,6 +1974,15 @@ export default {
     #sortZA {
       position: absolute;
       left: 30px;
+    }
+  }
+  @media (max-width: 320px) {
+    .color-palette{
+      height: 280px;
+      width: 44px;
+      bottom: 20px;
+      right: 20px;
+      flex-direction: column;
     }
   }
   @media (min-width: 720px) {
