@@ -1309,7 +1309,7 @@ export default {
                 that.stream_list[item].eventList.push({...that.stream_list[item].events[sid], sid: sid});
               });
               that.stream_list[item].eventList.sort((a, b) =>
-                a.league > b.league ? 1 : b.league > a.league ? -1 : 0
+                a.league.trim() > b.league.trim() ? 1 : b.league.trim() > a.league.trim() ? -1 : 0
               );
             }
           });
@@ -1439,7 +1439,7 @@ export default {
       Object.keys(that.stream_list).forEach(function (item) {
         if (that.stream_list[item].events != "undefined") {
           that.stream_list[item].eventList.sort((a, b) =>
-            a.league < b.league ? 1 : b.league < a.league ? -1 : 0
+            a.league.trim() < b.league.trim() ? 1 : b.league.trim() < a.league.trim() ? -1 : 0
           );
         }
       });
@@ -1451,7 +1451,7 @@ export default {
       Object.keys(that.stream_list).forEach(function (item) {
         if (that.stream_list[item].events != "undefined") {
           that.stream_list[item].eventList.sort((a, b) =>
-            a.league > b.league ? 1 : b.league > a.league ? -1 : 0
+            a.league.trim() > b.league.trim() ? 1 : b.league.trim() > a.league.trim() ? -1 : 0
           );
         }
       });
