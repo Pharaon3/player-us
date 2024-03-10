@@ -1183,7 +1183,7 @@
     </div>
 
     <div id="search-bar">
-      <input type="text" id="filter-event-search" placeholder="Filter Events" />
+      <input type="text" id="filter-event-search" placeholder="Filter Events" v-model="filter_input" @input="filter_event"/>
       <i class="fa fa-search" aria-hidden="true"></i>
     </div>
 
@@ -1214,7 +1214,7 @@
 
         <tbody>
           <tr
-            v-for="(competition) in current.eventList"
+            v-for="(competition) in current.filterList"
             :class="{ activeEvent: stream_id === competition.sid }"
             v-bind:key="competition.sid"
             v-on:click.stop.prevent="stream_id = competition.sid"
@@ -1287,6 +1287,7 @@ export default {
       first_time: true,
       isVisibleAZ: true,
       isVisibleZA: false,
+      filter_input: "",
     };
   },
 
@@ -1311,6 +1312,7 @@ export default {
               that.stream_list[item].eventList.sort((a, b) =>
                 a.league.trim() > b.league.trim() ? 1 : b.league.trim() > a.league.trim() ? -1 : 0
               );
+              that.stream_list[item].filterList = that.stream_list[item].eventList;
             }
           });
           if (that.stream_id < 1) {
@@ -1442,6 +1444,7 @@ export default {
             a.league.trim() < b.league.trim() ? 1 : b.league.trim() < a.league.trim() ? -1 : 0
           );
         }
+        that.stream_list[item].filterList = that.stream_list[item].eventList;
       });
     },
     sortZA() {
@@ -1454,8 +1457,22 @@ export default {
             a.league.trim() > b.league.trim() ? 1 : b.league.trim() > a.league.trim() ? -1 : 0
           );
         }
+        that.stream_list[item].filterList = that.stream_list[item].eventList;
       });
     },
+    filter_event() {
+      var that = this;
+      let filterInput = that.filter_input.toLowerCase();
+      Object.keys(that.stream_list).forEach(function (item) {
+        if (that.stream_list[item].events != "undefined") {
+          that.stream_list[item].filterList = that.stream_list[item].eventList.filter(match => {
+            const combinedField = (match.competitiors.home + " " + match.competitiors.away).toLowerCase();
+            return combinedField.includes(filterInput);
+          });
+        }
+      });
+      
+    }
   },
 
   created() {
