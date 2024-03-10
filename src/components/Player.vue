@@ -1188,7 +1188,7 @@
     </div>
 
     <div id="sort-buttons">
-      <div id="sort-league">
+      <div id="sort-league" class="orange-title">
         <img
           id="sortAZ"
           :src="'./svg/Sort A-Z.svg'"
@@ -1205,7 +1205,7 @@
         />
         League
       </div>
-      <div id="sort-event">Event</div>
+      <div id="sort-event" class="orange-title">Event</div>
     </div>
 
     <div id="content">
@@ -1238,6 +1238,7 @@
       <div class="color-section orange" @click="pick_color('orange')"></div>
       <div class="color-section blue" @click="pick_color('blue')"></div>
       <div class="color-section red" @click="pick_color('red')"></div>
+      <div class="color-section black" @click="pick_color('black')"></div>
       <div class="color-section white" @click="pick_color('white')"></div>
     </div>
     <div class="float orange" @click="change_color()">
@@ -1441,7 +1442,7 @@ export default {
           item.style.display = "none";
         });
       }
-      
+      that.changeEventColor();
     },
     sortAZ() {
       this.isVisibleAZ = false;
@@ -1490,13 +1491,98 @@ export default {
       }
     },
     pick_color(pickedColor) {
+      let that = this;
       document.querySelector(".float").classList.remove("green");
       document.querySelector(".float").classList.remove("orange");
       document.querySelector(".float").classList.remove("blue");
       document.querySelector(".float").classList.remove("red");
+      document.querySelector(".float").classList.remove("black");
       document.querySelector(".float").classList.remove("white");
+
       document.querySelector(".float").classList.add(pickedColor);
       document.querySelector(".color-palette").classList.add("hidden");
+
+      let sortLeague = document.getElementById('sort-league');
+      while (sortLeague.classList.length > 0) {
+        sortLeague.classList.remove(sortLeague.classList.item(0));
+      }
+      sortLeague.classList.add(pickedColor + "-title");
+      let sortEvent = document.getElementById('sort-event');
+      while (sortEvent.classList.length > 0) {
+        sortEvent.classList.remove(sortEvent.classList.item(0));
+      }
+      sortEvent.classList.add(pickedColor + "-title");
+
+      let appElement = document.getElementById('app')
+      let searchInput = document.getElementById('filter-event-search')
+      switch (pickedColor) {
+        case "green":
+          appElement.style.background = 'linear-gradient(180deg, #10651E, black)';
+          appElement.style.backgroundAttachment = 'fixed';
+          appElement.style.backgroundSize = 'cover';
+          appElement.style.color = 'white';
+          searchInput.style.color = 'white';
+          break;
+        case "orange":
+          appElement.style.background = 'linear-gradient(180deg, #914E00, black)';
+          appElement.style.backgroundAttachment = 'fixed';
+          appElement.style.backgroundSize = 'cover';
+          appElement.style.color = 'white';
+          searchInput.style.color = 'white';
+          break;
+        case "blue":
+          appElement.style.background = 'linear-gradient(180deg, #003191, black)';
+          appElement.style.backgroundAttachment = 'fixed';
+          appElement.style.backgroundSize = 'cover';
+          appElement.style.color = 'white';
+          searchInput.style.color = 'white';
+          break;
+        case "red":
+          appElement.style.background = 'linear-gradient(180deg, #910000, black)';
+          appElement.style.backgroundAttachment = 'fixed';
+          appElement.style.backgroundSize = 'cover';
+          appElement.style.color = 'white';
+          searchInput.style.color = 'white';
+          break;
+        case "black":
+          appElement.style.background = 'linear-gradient(180deg, black, grey)';
+          appElement.style.backgroundAttachment = 'fixed';
+          appElement.style.backgroundSize = 'cover';
+          appElement.style.color = 'white';
+          searchInput.style.color = 'white';
+          break;
+        case "white":
+          appElement.style.background = 'white';
+          appElement.style.backgroundAttachment = 'fixed';
+          appElement.style.backgroundSize = 'cover';
+          appElement.style.color = 'black';
+          searchInput.style.color = 'black';
+          break;
+        default:
+          appElement.style.background = 'linear-gradient(180deg, #914E00, black)';
+          appElement.style.backgroundAttachment = 'fixed';
+          appElement.style.backgroundSize = 'cover';
+          appElement.style.color = 'white';
+          searchInput.style.color = 'white';
+          break;
+      }
+      that.changeEventColor();
+    },
+    changeEventColor() {
+      let allEventCounts = document.querySelectorAll(".event-count");
+      allEventCounts.forEach(function(element) {
+        element.classList.remove("orange-title");
+        element.classList.remove("blue-title");
+        element.classList.remove("red-title");
+        element.classList.remove("black-title");
+        element.classList.remove("white-title");
+        element.classList.remove("green-title");
+      });
+      let activeEventCounts = document.querySelectorAll(".active .event-count");
+      let sortLeague = document.getElementById('sort-league');
+      activeEventCounts.forEach(function(element) {
+        element.classList.add(sortLeague.classList.item(0));
+      });
     }
   },
 
@@ -1581,6 +1667,7 @@ export default {
     display: flex;
     justify-content: center;
     min-height: 100vh;
+    color: white;
   }
 
   #search-bar {
@@ -1605,7 +1692,7 @@ export default {
     width: -webkit-fill-available;
   }
   #search-bar input::placeholder {
-    color: white;
+    color: #888;
     font-size: 19px;
     outline: none;
   }
@@ -1618,14 +1705,12 @@ export default {
   }
   #sort-buttons > div {
     padding: 12px 20px;
-    background: #d67400;
     width: 50%;
     border-radius: 10000px;
     font-weight: 900;
     font-size: 12px;
     display: flex;
     align-items: center;
-    color: white;
   }
   #sort-buttons > div:first-child {
     justify-content: space-between;
@@ -1663,12 +1748,8 @@ export default {
     color: #d9d9d9;
   }
   #sport-links ul li {
-    color: white;
     justify-content: center;
     align-items: center;
-  }
-  .active .event-count {
-    background: #d67400;
   }
   @media only screen and (max-width: 719px) {
     iframe {
@@ -1749,7 +1830,6 @@ export default {
     padding: 0;
     margin: 0;
     font-size: 14px;
-    color: white;
   }
   #liveEventList thead tr {
     background: #d8d8d8;
@@ -1835,7 +1915,7 @@ export default {
   }
   .color-palette{
     position:fixed;
-    width: 280px;
+    width: 320px;
     height: 44px;
     bottom: 20px;
     right: 20px;
@@ -1864,8 +1944,29 @@ export default {
   .red {
     background-color: #910000;
   }
+  .black {
+    background-color: #000;
+  }
   .white {
     background-color: #FFF;
+  }
+  .green-title {
+    background: #42914F;
+  }
+  .orange-title {
+    background: #d67400;
+  }
+  .blue-title {
+    background-color: #1E5DD8;
+  }
+  .red-title {
+    background-color: #D81E1E;
+  }
+  .black-title {
+    background-color: #FFFFFF;
+  }
+  .white-title {
+    background-color: #000000;
   }
   .hidden {
     display: none;
@@ -1976,9 +2077,9 @@ export default {
       left: 30px;
     }
   }
-  @media (max-width: 320px) {
+  @media (max-width: 340px) {
     .color-palette{
-      height: 280px;
+      height: 320px;
       width: 44px;
       bottom: 20px;
       right: 20px;
