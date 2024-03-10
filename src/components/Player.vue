@@ -1583,14 +1583,23 @@ export default {
     font-size: 12px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     color: white;
   }
+  #sort-buttons > div:first-child {
+    justify-content: end;
+  }
+  #sort-buttons > div:last-child {
+    justify-content: start;
+  }
   #sortAZ {
-    cursor: pointer;
+    cursor: pointer;    
+    position: fixed;
+    left: 30px;
   }
   #sortZA {
-    cursor: pointer;
+    cursor: pointer; 
+    position: fixed;
+    left: 30px;
   }
 
   #sport_list li {
@@ -1861,6 +1870,12 @@ export default {
       border-radius: unset;
       border-bottom-left-radius: 22px;
       border-bottom-right-radius: 22px;
+    }
+    #sort-buttons > div:first-child {
+      justify-content: center;
+    }
+    #sort-buttons > div:last-child {
+      justify-content: center;
     }
   }
   @media (min-width: 720px) {
