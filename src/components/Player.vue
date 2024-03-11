@@ -1589,11 +1589,17 @@ export default {
         element.classList.remove("black-title");
         element.classList.remove("white-title");
         element.classList.remove("green-title");
+        element.classList.remove("black-active-event-count");
       });
       let activeEventCounts = document.querySelectorAll(".active .event-count");
       let sortLeague = document.getElementById('sort-league');
       activeEventCounts.forEach(function(element) {
-        element.classList.add(sortLeague.classList.item(0));
+        let titleClass = sortLeague.classList.item(0);
+        if (titleClass == "black-title") {
+          element.classList.add("black-active-event-count");
+        } else {
+          element.classList.add(sortLeague.classList.item(0));
+        }
         element.classList.remove("white01");
         element.classList.remove("black01");
       });
@@ -2033,6 +2039,9 @@ export default {
   }
   .black01 {
     background: rgba(0, 0, 0, 0.1);
+  }
+  .black-active-event-count {
+    background: #DADADA;
   }
 
   @media (min-width: 320px) {
