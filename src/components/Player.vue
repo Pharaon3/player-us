@@ -1191,14 +1191,14 @@
       <div id="sort-league" class="orange-title">
         <img
           id="sortAZ"
-          :src="'./svg/Sort A-Z.svg'"
+          :src="imgSrcAZ"
           alt="Sort Icon A-Z"
           @click="sortAZ()"
           v-if="isVisibleAZ"
         />
         <img
           id="sortZA"
-          :src="'./svg/Sort Z-A.svg'"
+          :src="imgSrcZA"
           alt="Sort Icon Z-A"
           @click="sortZA()"
           v-if="isVisibleZA"
@@ -1219,14 +1219,14 @@
             v-bind:key="competition.sid"
             v-on:click.stop.prevent="stream_id = competition.sid"
           >
-            <td width="50%">
+            <td width="50%" class="eventSection white01">
               {{ competition.league }}
             </td>
             <td class="mobile-td" width="100%">
-              <div>{{ competition.league }}</div>
-              <div>{{ competition.competitiors.home }} - {{ competition.competitiors.away }}</div>
+              <div class="eventSection white01">{{ competition.league }}</div>
+              <div class="eventSection white01">{{ competition.competitiors.home }} - {{ competition.competitiors.away }}</div>
             </td>
-            <td width="50%">
+            <td width="50%" class="eventSection white01">
               {{ competition.competitiors.home }} - {{ competition.competitiors.away }}
             </td>
           </tr>
@@ -1298,6 +1298,8 @@ export default {
       isVisibleAZ: true,
       isVisibleZA: false,
       filter_input: "",
+      imgSrcAZ: './svg/Sort A-Z - white.svg',
+      imgSrcZA: './svg/Sort Z-A - white.svg',
     };
   },
 
@@ -1515,6 +1517,11 @@ export default {
 
       let appElement = document.getElementById('app')
       let searchInput = document.getElementById('filter-event-search')
+      let allEventCounts = document.querySelectorAll(".event-count");
+      allEventCounts.forEach(function(element) {
+        element.classList.remove("black01");
+        element.classList.add("white01");
+      });
       switch (pickedColor) {
         case "green":
           appElement.style.background = 'linear-gradient(180deg, #10651E, black)';
@@ -1557,6 +1564,10 @@ export default {
           appElement.style.backgroundSize = 'cover';
           appElement.style.color = 'black';
           searchInput.style.color = 'black';
+          allEventCounts.forEach(function(element) {
+            element.classList.remove("white01");
+            element.classList.add("black01");
+          });
           break;
         default:
           appElement.style.background = 'linear-gradient(180deg, #914E00, black)';
@@ -1569,6 +1580,7 @@ export default {
       that.changeEventColor();
     },
     changeEventColor() {
+      let that = this;
       let allEventCounts = document.querySelectorAll(".event-count");
       allEventCounts.forEach(function(element) {
         element.classList.remove("orange-title");
@@ -1582,7 +1594,51 @@ export default {
       let sortLeague = document.getElementById('sort-league');
       activeEventCounts.forEach(function(element) {
         element.classList.add(sortLeague.classList.item(0));
+        element.classList.remove("white01");
+        element.classList.remove("black01");
       });
+      let liveEventLists = document.querySelectorAll(".eventSection");
+      let sportLists = document.querySelectorAll("#sport_list li");
+      let sportTypes = document.querySelectorAll(".sport-type");
+      if (sortLeague.classList.item(0) == "white-title") {
+        liveEventLists.forEach(function(element) {
+          element.classList.remove("white01");
+          element.classList.add("black01");
+        });
+        sportLists.forEach(function(element) {
+          element.classList.remove("white01");
+          element.classList.add("black01");
+        });
+        document.getElementById('search-bar').classList.remove("white01");
+        document.getElementById('search-bar').classList.add("black01");
+        sportTypes.forEach(function(element) {
+          element.style.color = "black";
+        });
+      } else {
+        liveEventLists.forEach(function(element) {
+          element.classList.add("white01");
+          element.classList.remove("black01");
+        });
+        sportLists.forEach(function(element) {
+          element.classList.add("white01");
+          element.classList.remove("black01");
+        });
+        document.getElementById('search-bar').classList.remove("black01");
+        document.getElementById('search-bar').classList.add("white01");
+        sportTypes.forEach(function(element) {
+          element.style.color = "white";
+        });
+      }
+      document.querySelector(".active .sport-type").style.color = "";
+      if (sortLeague.classList.item(0) == "black-title") {
+        document.getElementById("sort-buttons").style.color = "black";
+        that.imgSrcAZ = './svg/Sort A-Z - black.svg';
+        that.imgSrcZA = './svg/Sort Z-A - black.svg';
+      } else {
+        document.getElementById("sort-buttons").style.color = "white";
+        that.imgSrcAZ = './svg/Sort A-Z - white.svg';
+        that.imgSrcZA = './svg/Sort Z-A - white.svg';
+      }
     }
   },
 
@@ -1676,8 +1732,8 @@ export default {
     border-width: 1px;
     border-color: rgba(255, 255, 255, 0.1);
     border-style: solid;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
+    //background-color: rgba(255, 255, 255, 0.1);
+    //color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1727,7 +1783,7 @@ export default {
 
   #sport_list li {
     border-radius: 15px;
-    background: rgba(255, 255, 255, 0.1);
+    //background: rgba(255, 255, 255, 0.1);
     margin-right: 4px;
     margin-bottom: 4px;
   }
@@ -1847,7 +1903,7 @@ export default {
   }
   #liveEventList tbody tr td {
     padding: 18px 20px;
-    background: rgba(255, 255, 255, 0.1);
+    //background: rgba(255, 255, 255, 0.1);
   }
   #liveEventList tbody tr td:first-child {
     text-align: right;
@@ -1869,13 +1925,13 @@ export default {
   }
   .mobile-td div:first-child {
     padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
+    //background: rgba(255, 255, 255, 0.1);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
   }
   .mobile-td div:last-child {
     padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
+    //background: rgba(255, 255, 255, 0.1);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
@@ -1970,6 +2026,13 @@ export default {
   }
   .hidden {
     display: none;
+  }
+
+  .white01 {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .black01 {
+    background: rgba(0, 0, 0, 0.1);
   }
 
   @media (min-width: 320px) {
