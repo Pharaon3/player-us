@@ -1604,12 +1604,18 @@ export default {
         element.classList.remove("black01");
       });
       let liveEventLists = document.querySelectorAll(".eventSection");
+      let activeEventLists = document.querySelectorAll(".activeEvent .eventSection");
       let sportLists = document.querySelectorAll("#sport_list li");
       let sportTypes = document.querySelectorAll(".sport-type");
       if (sortLeague.classList.item(0) == "white-title") {
         liveEventLists.forEach(function(element) {
           element.classList.remove("white01");
           element.classList.add("black01");
+        });
+        activeEventLists.forEach(function(element) {
+          element.classList.remove("white01");
+          element.classList.add("black01");
+          element.classList.remove("black");
         });
         sportLists.forEach(function(element) {
           element.classList.remove("white01");
@@ -1620,10 +1626,34 @@ export default {
         sportTypes.forEach(function(element) {
           element.style.color = "black";
         });
+      } else if (sortLeague.classList.item(0) == "black-title") {
+        liveEventLists.forEach(function(element) {
+          element.classList.add("white01");
+          element.classList.remove("black01");
+        });
+        activeEventLists.forEach(function(element) {
+          element.classList.remove("black01");
+          element.classList.add("black");
+          element.classList.remove("white01");
+        });
+        sportLists.forEach(function(element) {
+          element.classList.add("white01");
+          element.classList.remove("black01");
+        });
+        document.getElementById('search-bar').classList.remove("black01");
+        document.getElementById('search-bar').classList.add("white01");
+        sportTypes.forEach(function(element) {
+          element.style.color = "white";
+        });
       } else {
         liveEventLists.forEach(function(element) {
           element.classList.add("white01");
           element.classList.remove("black01");
+        });
+        activeEventLists.forEach(function(element) {
+          element.classList.remove("black01");
+          element.classList.add("white01");
+          element.classList.remove("black");
         });
         sportLists.forEach(function(element) {
           element.classList.add("white01");
@@ -1807,7 +1837,7 @@ export default {
     justify-content: center;
   }
   .sport-type {
-    color: #d9d9d9;
+    //color: #d9d9d9;
   }
   #sport-links ul li {
     justify-content: center;
@@ -1871,8 +1901,28 @@ export default {
     background: #fff;
     color: #000;
   }
+  #sport-links ul li.active.black01 {
+    background: #000;
+    color: #fff;
+  }
+  .active.black01 .event-count {
+    background: #EFCE6F;
+    color: black;
+  }
+  .activeEvent .eventSection.black01 {
+    background: #EFCE6F;
+    color: black;
+  }
+  .activeEvent .eventSection.black {
+    background: #000;
+    color: #FFF;
+  }
   #sport-links ul li.active> span {
-    color: #000;
+    //color: #000;
+  }
+  .event-count.black01 {
+    background: #000;
+    color: #FFF;
   }
   #getFlashPlayer {
     text-align: center;
