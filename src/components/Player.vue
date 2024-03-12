@@ -1,6 +1,6 @@
 <template>
   <div class="player" id="player">
-    <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"  ></vue-friendly-iframe>
+    <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"></vue-friendly-iframe>
 
     <div id="sport-links">
       <ul
@@ -1184,7 +1184,8 @@
 
     <div id="search-bar">
       <input type="text" id="filter-event-search" placeholder="Filter Events" v-model="filter_input" @input="filter_event"/>
-      <i class="fa fa-search" aria-hidden="true"></i>
+      <i id="searchIcon" class="fa fa-search" aria-hidden="true"></i>
+      <i id="emptySearchIcon" class="fa fa-times hidden" aria-hidden="true" @click="emptySearch()"></i>
     </div>
 
     <div id="sort-buttons">
@@ -1483,7 +1484,13 @@ export default {
           });
         }
       });
-      
+      if (filterInput == "") {
+        document.getElementById("searchIcon").classList.remove("hidden");
+        document.getElementById("emptySearchIcon").classList.add("hidden");
+      } else {
+        document.getElementById("searchIcon").classList.add("hidden");
+        document.getElementById("emptySearchIcon").classList.remove("hidden");
+      }
     },
     change_color() {
       if (document.querySelector(".color-palette").classList.contains("hidden")) {
@@ -1675,6 +1682,11 @@ export default {
         that.imgSrcAZ = './svg/Sort A-Z - white.svg';
         that.imgSrcZA = './svg/Sort Z-A - white.svg';
       }
+    },
+    emptySearch() {
+      let that = this;
+      that.filter_input = "";
+      that.filter_event();
     }
   },
 
@@ -2016,6 +2028,7 @@ export default {
   }
   .float{
     position:fixed;
+    cursor: pointer;
     width: 40px;
     height: 40px;
     bottom: 22px;
@@ -2043,6 +2056,7 @@ export default {
     width: 40px;
     height: 40px;
     border-radius: 500px;
+    cursor: pointer;
   }
   .green {
     background-color: #10651E;
@@ -2092,6 +2106,9 @@ export default {
   }
   .black-active-event-count {
     background: #DADADA;
+  }
+  #emptySearchIcon {
+    cursor: pointer;
   }
 
   @media (min-width: 320px) {
