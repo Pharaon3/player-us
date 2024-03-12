@@ -1243,6 +1243,7 @@
       <div class="color-section white" @click="pick_color('white')"></div>
     </div>
     <div class="float orange" @click="change_color()">
+      <i class="fa fa-cog" aria-hidden="true"></i>
     </div>
   </div>
 </template>
@@ -2027,16 +2028,22 @@ export default {
     margin: 0px;
   }
   .float{
-    position:fixed;
+    position: fixed;
     cursor: pointer;
     width: 40px;
     height: 40px;
-    bottom: 22px;
-    right: 22px;
-    color:#FFF;
-    border-radius:50px;
-    text-align:center;
-    //background-image: conic-gradient(green, orange, orange, blue, blue, red, red, white, white, green);
+    bottom: 19px;
+    right: 19px;
+    color: #AAA;
+    border-radius: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    border-width: 3px;
+    border-color: #AAA;
+    border-style: solid;
   }
   .color-palette{
     position:fixed;
