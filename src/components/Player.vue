@@ -1922,12 +1922,19 @@ export default {
     background: #EFCE6F;
     color: black;
   }
-  .activeEvent .eventSection.black01 {
+  .activeEvent .mobile-td div.eventSection.black01 {
     background: #EFCE6F;
     color: black;
   }
-  .activeEvent .eventSection.black {
+  .activeEvent td.eventSection.black01 {
+    background: #EFCE6F;
+    color: black;
+  }
+  .activeEvent .mobile-td div.eventSection.black {
     background: #000;
+    color: #FFF;
+  }
+  .activeEvent .eventSection.black {
     color: #FFF;
   }
   #sport-links ul li.active> span {
@@ -2000,11 +2007,16 @@ export default {
   }
   .mobile-td div:last-child {
     padding: 15px;
-    //background: rgba(255, 255, 255, 0.1);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
-  .activeEvent .mobile-td div {
+  .mobile-td div.white01:last-child {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .mobile-td div.black01:last-child {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .activeEvent .mobile-td div.eventSection {
     background: #d8d8d8;
     color: #273655;
   }
