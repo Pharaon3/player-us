@@ -1502,6 +1502,8 @@ export default {
     },
     pick_color(pickedColor) {
       let that = this;
+      that.$router.push({ path: '/', query: { theme: pickedColor } });
+      // window.location.href = "/?them=" + pickedColor;
       document.querySelector(".float").classList.remove("green");
       document.querySelector(".float").classList.remove("orange");
       document.querySelector(".float").classList.remove("blue");
@@ -1698,6 +1700,13 @@ export default {
     setInterval(function () {
       that.getEventList();
     }, 60000);
+    setTimeout(() => {
+      let theme = that.$route.query.theme;
+      console.log("theme: ", theme);
+      if (theme) {
+        that.pick_color(theme);
+      }
+    }, 200);
   },
   ready: function () {
     var that = this;
