@@ -1702,7 +1702,6 @@ export default {
     }, 60000);
     setTimeout(() => {
       let theme = that.$route.query.theme;
-      console.log("theme: ", theme);
       if (theme) {
         that.pick_color(theme);
       }
