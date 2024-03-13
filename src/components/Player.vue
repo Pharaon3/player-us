@@ -1948,7 +1948,7 @@ export default {
   #sport-links ul li.active> span {
     //color: #000;
   }
-  .event-count.black01 {
+  .black01 .event-count {
     background: #000;
     color: #FFF;
   }
