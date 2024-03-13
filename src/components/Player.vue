@@ -2021,7 +2021,7 @@ export default {
   .mobile-td div.white01:last-child {
     background: rgba(255, 255, 255, 0.2);
   }
-  .mobile-td div.black01:last-child {
+  .mobile-td div.black01:first-child {
     background: rgba(0, 0, 0, 0.2);
   }
   .activeEvent .mobile-td div.eventSection {
