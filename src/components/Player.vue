@@ -1360,16 +1360,20 @@ export default {
       var that = this;
       that.current = that.stream_list[name];
       that.activeIndex = name;
-      that.show_all_btn();
-      setTimeout(() => {
+      let w = window.innerWidth;
+      if (w > 460) {
+        setTimeout(() => {
+          that.show_all_btn();
+        }, 1);
+        setTimeout(() => {
+          that.show_all();
+        }, 2);
+        setTimeout(() => {
+          that.show_all();
+        }, 3);
+      } else {
         that.show_all_btn();
-      }, 10);
-      setTimeout(() => {
-        that.show_all();
-      }, 20);
-      setTimeout(() => {
-        that.show_all();
-      }, 30);
+      }
     },
     show_all() {
       var that = this;
