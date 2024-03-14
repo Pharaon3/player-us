@@ -1360,7 +1360,16 @@ export default {
       var that = this;
       that.current = that.stream_list[name];
       that.activeIndex = name;
-      that.show_all_btn;
+      that.show_all_btn();
+      setTimeout(() => {
+        that.show_all_btn();
+      }, 10);
+      setTimeout(() => {
+        that.show_all();
+      }, 20);
+      setTimeout(() => {
+        that.show_all();
+      }, 30);
     },
     show_all() {
       var that = this;
@@ -1704,6 +1713,8 @@ export default {
       let theme = that.$route.query.theme;
       if (theme) {
         that.pick_color(theme);
+      } else {
+        that.pick_color("blue");
       }
     }, 200);
   },
