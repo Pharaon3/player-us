@@ -1,6 +1,18 @@
 <template>
   <div class="player" id="player">
-    <vue-friendly-iframe v-if="stream_id" :src="'https://demo.player-us.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"></vue-friendly-iframe>
+
+    <div class="logo-wrapper left">
+      <div class="logo">
+        <img src="../assets/logo1.jpg" alt="Logo" style="width: 140px; height: 100%; object-fit: contain; opacity: 0.8;" />
+      </div>
+    </div>
+    <div class="logo-wrapper right">
+      <div class="logo">
+        <img src="../assets/logo1.jpg" alt="Logo" style="width: 140px; height: 100%; object-fit: contain; opacity: 0.8" />
+      </div>
+    </div>
+
+    <vue-friendly-iframe v-if="stream_id" :src="'https://istplay.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"></vue-friendly-iframe>
 
     <div id="sport-links">
       <ul
@@ -1310,7 +1322,7 @@ export default {
       var that = this;
 
       axios
-        .get("https://api-demo.player-us.xyz/stream-list-v2/?tv=usa")
+        .get("https://api.istplay.xyz/stream-list-v2/?tv=tv")
         .then(function (response) {
           that.stream_list = response.data.sports;
           that.live_sport_count = 0;
@@ -1323,9 +1335,11 @@ export default {
               Object.keys(that.stream_list[item].events).forEach((sid) => {
                 that.stream_list[item].eventList.push({...that.stream_list[item].events[sid], sid: sid});
               });
+              /*
               that.stream_list[item].eventList.sort((a, b) =>
                 a.league.trim() > b.league.trim() ? 1 : b.league.trim() > a.league.trim() ? -1 : 0
               );
+              */
               that.stream_list[item].filterList = that.stream_list[item].eventList;
             }
           });
@@ -1515,7 +1529,8 @@ export default {
     },
     pick_color(pickedColor) {
       let that = this;
-      that.$router.push({ path: '/', query: { theme: pickedColor } });
+      //that.$router.push({ path: '/', query: { theme: pickedColor } });
+      that.$router.push({ path: that.$route.path, query: { theme: pickedColor } });
       // window.location.href = "/?them=" + pickedColor;
       document.querySelector(".float").classList.remove("green");
       document.querySelector(".float").classList.remove("orange");
@@ -1688,16 +1703,27 @@ export default {
           element.style.color = "white";
         });
       }
-      document.querySelector(".active .sport-type").style.color = "";
-      if (sortLeague.classList.item(0) == "black-title") {
-        document.getElementById("sort-buttons").style.color = "black";
-        that.imgSrcAZ = './svg/Sort A-Z - black.svg';
-        that.imgSrcZA = './svg/Sort Z-A - black.svg';
+
+      // sort-buttons ID'sine sahip öğeyi kontrol edelim
+      var sortButtonsElement = document.getElementById("sort-buttons");
+
+      if (sortButtonsElement) {
+          // sort-buttons öğesi bulunduğunda çalışacak kodlar
+          var sortLeagueT = document.querySelector(".active .sport-type");
+          if (sortLeagueT && sortLeagueT.classList.contains("black-title")) {
+              sortButtonsElement.style.color = "black";
+              that.imgSrcAZ = './svg/Sort A-Z - black.svg';
+              that.imgSrcZA = './svg/Sort Z-A - black.svg';
+          } else {
+              sortButtonsElement.style.color = "white";
+              that.imgSrcAZ = './svg/Sort A-Z - white.svg';
+              that.imgSrcZA = './svg/Sort Z-A - white.svg';
+          }
       } else {
-        document.getElementById("sort-buttons").style.color = "white";
-        that.imgSrcAZ = './svg/Sort A-Z - white.svg';
-        that.imgSrcZA = './svg/Sort Z-A - white.svg';
+          // sort-buttons öğesi bulunamadığında yapılacak işlemler
+          //console.error("sort-buttons ID'sine sahip bir öğe bulunamadı!");
       }
+
     },
     emptySearch() {
       let that = this;
@@ -1797,6 +1823,38 @@ export default {
     min-height: 100vh;
     color: white;
   }
+
+  .logo-wrapper {
+  position: fixed; /* Yüzen banner olarak sabitle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  z-index: 1000; /* Diğer elementlerin üstünde kalması için */
+}
+.logo-wrapper.left {
+  left: calc((100vw - 760px) / 2 - 130px); /* Ekranın solundan player'ın sol kenarına olan mesafeyi hesaplar */
+  top: 50%; /* Dikeyde ortala */
+  transform: translateY(-50%); /* Dikey ortalamayı hassaslaştır */
+}
+.logo-wrapper.right {
+  right: calc((100vw - 760px) / 2 - 130px); /* Ekranın sağından player'ın sağ kenarına olan mesafeyi hesaplar */
+  top: 50%; /* Dikeyde ortala */
+  transform: translateY(-50%); /* Dikey ortalamayı hassaslaştır */
+}
+
+@media (max-width: 1024px) {
+  .logo-wrapper.left {
+    display: none;
+  }
+  .logo-wrapper.right {
+    display: none;
+  }
+}
+
+.player {
+  position: relative; /* Logolar için referans */
+}
 
   #search-bar {
     padding: 12px 20px;
