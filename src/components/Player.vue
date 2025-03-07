@@ -1,17 +1,6 @@
 <template>
   <div class="player" id="player">
 
-    <div class="logo-wrapper left">
-      <div class="logo">
-        <img src="../assets/logo1.jpg" alt="Logo" style="width: 140px; height: 100%; object-fit: contain; opacity: 0.8;" />
-      </div>
-    </div>
-    <div class="logo-wrapper right">
-      <div class="logo">
-        <img src="../assets/logo1.jpg" alt="Logo" style="width: 140px; height: 100%; object-fit: contain; opacity: 0.8" />
-      </div>
-    </div>
-
     <vue-friendly-iframe v-if="stream_id" :src="'https://istplay.xyz/stream/'+stream_id" allow="autoplay" allowfullscreen="allowfullscreen" class="live-tv"></vue-friendly-iframe>
 
     <div id="sport-links">
@@ -1314,6 +1303,7 @@ export default {
       filter_input: "",
       imgSrcAZ: './svg/Sort A-Z - white.svg',
       imgSrcZA: './svg/Sort Z-A - white.svg',
+      backgroundImageUrl: './svg/background.png',
     };
   },
 
@@ -1562,45 +1552,45 @@ export default {
       });
       switch (pickedColor) {
         case "green":
-          appElement.style.background = 'linear-gradient(180deg, #10651E, black)';
-          appElement.style.backgroundAttachment = 'fixed';
-          appElement.style.backgroundSize = 'cover';
-          appElement.style.color = 'white';
+          // appElement.style.background = 'linear-gradient(180deg, #10651E, black)';
+          // appElement.style.backgroundAttachment = 'fixed';
+          // appElement.style.backgroundSize = 'cover';
+          // appElement.style.color = 'white';
           searchInput.style.color = 'white';
           break;
         case "orange":
-          appElement.style.background = 'linear-gradient(180deg, #914E00, black)';
-          appElement.style.backgroundAttachment = 'fixed';
-          appElement.style.backgroundSize = 'cover';
-          appElement.style.color = 'white';
+          // appElement.style.background = 'linear-gradient(180deg, #914E00, black)';
+          // appElement.style.backgroundAttachment = 'fixed';
+          // appElement.style.backgroundSize = 'cover';
+          // appElement.style.color = 'white';
           searchInput.style.color = 'white';
           break;
         case "blue":
-          appElement.style.background = 'linear-gradient(180deg, #003191, black)';
-          appElement.style.backgroundAttachment = 'fixed';
-          appElement.style.backgroundSize = 'cover';
-          appElement.style.color = 'white';
+          // appElement.style.background = 'linear-gradient(180deg, #003191, black)';
+          // appElement.style.backgroundAttachment = 'fixed';
+          // appElement.style.backgroundSize = 'cover';
+          // appElement.style.color = 'white';
           searchInput.style.color = 'white';
           break;
         case "red":
-          appElement.style.background = 'linear-gradient(180deg, #910000, black)';
-          appElement.style.backgroundAttachment = 'fixed';
-          appElement.style.backgroundSize = 'cover';
-          appElement.style.color = 'white';
+          // appElement.style.background = 'linear-gradient(180deg, #910000, black)';
+          // appElement.style.backgroundAttachment = 'fixed';
+          // appElement.style.backgroundSize = 'cover';
+          // appElement.style.color = 'white';
           searchInput.style.color = 'white';
           break;
         case "black":
-          appElement.style.background = 'linear-gradient(180deg, black, grey)';
-          appElement.style.backgroundAttachment = 'fixed';
-          appElement.style.backgroundSize = 'cover';
-          appElement.style.color = 'white';
+          // appElement.style.background = 'linear-gradient(180deg, black, grey)';
+          // appElement.style.backgroundAttachment = 'fixed';
+          // appElement.style.backgroundSize = 'cover';
+          // appElement.style.color = 'white';
           searchInput.style.color = 'white';
           break;
         case "white":
-          appElement.style.background = 'white';
-          appElement.style.backgroundAttachment = 'fixed';
-          appElement.style.backgroundSize = 'cover';
-          appElement.style.color = 'black';
+          // appElement.style.background = 'white';
+          // appElement.style.backgroundAttachment = 'fixed';
+          // appElement.style.backgroundSize = 'cover';
+          // appElement.style.color = 'black';
           searchInput.style.color = 'black';
           allEventCounts.forEach(function(element) {
             element.classList.remove("white01");
@@ -1608,10 +1598,10 @@ export default {
           });
           break;
         default:
-          appElement.style.background = 'linear-gradient(180deg, #914E00, black)';
-          appElement.style.backgroundAttachment = 'fixed';
-          appElement.style.backgroundSize = 'cover';
-          appElement.style.color = 'white';
+          // appElement.style.background = 'linear-gradient(180deg, #914E00, black)';
+          // appElement.style.backgroundAttachment = 'fixed';
+          // appElement.style.backgroundSize = 'cover';
+          // appElement.style.color = 'white';
           searchInput.style.color = 'white';
           break;
       }
@@ -1815,7 +1805,9 @@ export default {
     min-height: 400px;
   }
   #app {
-    background: linear-gradient(180deg, #914e00, black);
+    background-position: center;
+    /* background: linear-gradient(180deg, #914e00, black); */
+    background-image: url('../assets/background.png');
     background-attachment: fixed;
     background-size: cover;
     display: flex;
